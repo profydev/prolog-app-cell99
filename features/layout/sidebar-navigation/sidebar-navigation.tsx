@@ -80,7 +80,7 @@ export function SidebarNavigation() {
           </ul>
           <ul className={styles.list}>
             <MenuItemLink
-              text="support"
+              text="Support"
               iconSrc="/icons/support.svg"
               isCollapsed={isSidebarCollapsed}
               href="mailto:support@prolog-app.com?subject=Support Request: "
