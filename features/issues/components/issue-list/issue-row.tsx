@@ -42,8 +42,8 @@ export function IssueRow({ projectLanguage, issue }: IssueRowProps) {
           {capitalize(level)}
         </Badge>
       </td>
-      <td className={styles.cell}>{numUsers}</td>
       <td className={styles.cell}>{numEvents}</td>
+      <td className={styles.cell}>{numUsers}</td>
     </tr>
   );
 }
