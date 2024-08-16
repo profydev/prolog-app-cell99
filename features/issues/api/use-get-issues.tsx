@@ -29,5 +29,6 @@ export function useGetIssues(page: number) {
       );
     }
   }, [query.data, page, queryClient]);
+  console.log(query);
   return query;
 }
