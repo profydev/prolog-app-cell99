@@ -1,0 +1,49 @@
+@use "@styles/breakpoint";
+@use "@styles/space";
+@use "@styles/color";
+@use "@styles/font";
+
+.footer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: space.$s6;
+  padding: space.$s6 space.$s4;
+  background: color.$gray-50;
+
+  @media (min-width: breakpoint.$desktop) {
+    height: 3.75rem;
+    padding: 0 space.$s8;
+    flex-direction: row;
+  }
+}
+
+.version {
+  flex: 1;
+  order: 1;
+  color: color.$gray-400;
+
+  @media (min-width: breakpoint.$desktop) {
+    order: 0;
+  }
+}
+
+.links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: space.$s6;
+  letter-spacing: 0.7px;
+
+  & a {
+    color: color.$gray-500;
+    font: font.$text-md-medium;
+  }
+}
+
+.logo {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
