@@ -4,7 +4,13 @@ import { useGetProjects } from "@features/projects";
 import { useGetIssues } from "../../api/use-get-issues";
 import { IssueRow } from "./issue-row";
 import styles from "./issue-list.module.scss";
-import { LoadingIndicator } from "@features/ui";
+import {
+  LoadingIndicator,
+  Alert,
+  AlertButton,
+  AlertIcon,
+  AlertMessage,
+} from "@features/ui";
 
 export function IssueList() {
   const router = useRouter();
@@ -24,12 +30,36 @@ export function IssueList() {
 
   if (projects.isError) {
     console.error(projects.error);
-    return <div>Error loading projects: {projects.error.message}</div>;
+    return (
+      <Alert>
+        <AlertIcon src="/icons/alert-circle.svg" />
+        <AlertMessage>
+          There was a problem while loading the issue data
+        </AlertMessage>
+
+        <AlertButton onClick={projects.refetch}>
+          Try Again
+          <AlertIcon src="/icons/arrow-right.svg" />
+        </AlertButton>
+      </Alert>
+    );
   }
 
   if (issuesPage.isError) {
     console.error(issuesPage.error);
-    return <div>Error loading issues: {issuesPage.error.message}</div>;
+    return (
+      <Alert>
+        <AlertIcon src="/icons/alert-circle.svg" />
+        <AlertMessage>
+          There was a problem while loading the issue data
+        </AlertMessage>
+
+        <AlertButton onClick={issuesPage.refetch}>
+          Try Again
+          <AlertIcon src="/icons/arrow-right.svg" />
+        </AlertButton>
+      </Alert>
+    );
   }
 
   const projectIdToLanguage = (projects.data || []).reduce(
