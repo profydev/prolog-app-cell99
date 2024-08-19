@@ -2,6 +2,7 @@
 @use "@styles/font";
 @use "@styles/space";
 @use "@styles/misc";
+@use "@styles/shadow";
 
 .check,
 .indeterminateCheck {
@@ -63,13 +64,28 @@
     position: absolute;
   }
 
+  &:focus-within .checkbox {
+    box-shadow: shadow.$focus-primary;
+  }
+
   & input:checked ~ .checkbox:not(.indeterminate) .check {
     display: block;
   }
 
+  &:hover .checkbox,
   & input:checked ~ .checkbox,
   & .checkbox.indeterminate {
     border-color: color.$primary-600;
-    background-color: color.$primary-50;
+    background: color.$primary-50;
+  }
+
+  & input:disabled ~ .checkbox {
+    border-color: color.$gray-200;
+    background: color.$gray-200;
+  }
+
+  & input:disabled ~ * {
+    color: color.$gray-300;
+    cursor: not-allowed;
   }
 }
