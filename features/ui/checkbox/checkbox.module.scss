@@ -3,9 +3,32 @@
 @use "@styles/space";
 @use "@styles/misc";
 
-.check {
+.check,
+.indeterminateCheck {
   width: 0.75 rem;
   height: 0.75 rem;
+}
+
+.sm {
+  font: font.$text-sm-medium;
+  gap: space.$s2;
+
+  .check,
+  .indeterminateCheck {
+    width: 0.75 rem;
+    height: 0.75 rem;
+  }
+}
+
+.md {
+  font: font.$text-md-medium;
+  gap: space.$s3;
+
+  .check,
+  .indeterminateCheck {
+    width: 0.875 rem;
+    height: 0.875 rem;
+  }
 }
 
 .checkbox {
@@ -19,17 +42,20 @@
   background: color.$white;
   color: color.$primary-600;
 
-  & .check {
+  & .check,
+  & .indeterminateCheck {
     display: none;
+  }
+
+  &.indeterminate .indeterminateCheck {
+    display: block;
   }
 }
 
 .container {
   display: flex;
   align-items: center;
-  gap: space.$s2;
   cursor: pointer;
-  font: font.$text-sm-medium;
   color: color.$gray-700;
 
   & input {
@@ -37,11 +63,12 @@
     position: absolute;
   }
 
-  & input:checked ~ .checkbox .check {
+  & input:checked ~ .checkbox:not(.indeterminate) .check {
     display: block;
   }
 
-  & input:checked ~ .checkbox {
+  & input:checked ~ .checkbox,
+  & .checkbox.indeterminate {
     border-color: color.$primary-600;
     background-color: color.$primary-50;
   }

@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Meta, StoryObj } from "@storybook/react";
 import { useArgs } from "@storybook/preview-api";
-import { CheckBox } from "./checkbox";
+import { CheckBox, CheckBoxSize } from "./checkbox";
 
 export default {
   title: "UI/CheckBox",
@@ -15,7 +15,12 @@ export default {
 type Story = StoryObj<typeof CheckBox>;
 
 export const Default: Story = {
-  args: { children: "Label", checked: false },
+  args: {
+    children: "Label",
+    checked: false,
+    indeterminate: false,
+    size: CheckBoxSize.Medium,
+  },
   render: function Render(args) {
     const [{ checked }, updateArgs] = useArgs();
     return (
@@ -26,4 +31,8 @@ export const Default: Story = {
       />
     );
   },
+};
+
+export const Uncontrolled: Story = {
+  args: { children: "Label", indeterminate: false },
 };
