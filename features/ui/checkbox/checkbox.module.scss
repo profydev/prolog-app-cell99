@@ -3,6 +3,27 @@
 @use "@styles/space";
 @use "@styles/misc";
 
+.check {
+  width: 0.75 rem;
+  height: 0.75 rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: space.$s4;
+  height: space.$s4;
+  border-radius: space.$s1;
+  border: 1px solid color.$gray-300;
+  background: color.$white;
+  color: color.$primary-600;
+
+  & .check {
+    display: none;
+  }
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -15,13 +36,13 @@
     opacity: 0;
     position: absolute;
   }
-}
 
-.checkbox {
-  display: block;
-  width: space.$s4;
-  height: space.$s4;
-  border-radius: space.$s1;
-  border: 1px color.$gray-300;
-  background: color.$white;
+  & input:checked ~ .checkbox .check {
+    display: block;
+  }
+
+  & input:checked ~ .checkbox {
+    border-color: color.$primary-600;
+    background-color: color.$primary-50;
+  }
 }

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Meta, StoryObj } from "@storybook/react";
+import { useArgs } from "@storybook/preview-api";
 import { CheckBox } from "./checkbox";
 
 export default {
@@ -14,5 +15,15 @@ export default {
 type Story = StoryObj<typeof CheckBox>;
 
 export const Default: Story = {
-  args: { children: "Label" },
+  args: { children: "Label", checked: false },
+  render: function Render(args) {
+    const [{ checked }, updateArgs] = useArgs();
+    return (
+      <CheckBox
+        {...args}
+        checked={checked}
+        onChange={(e) => updateArgs({ checked: e.target.checked })}
+      />
+    );
+  },
 };
