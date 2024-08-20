@@ -67,7 +67,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-artifacts
-          path: .next/
       - name: Cypress run
         uses: cypress-io/github-action@v4
         with:
