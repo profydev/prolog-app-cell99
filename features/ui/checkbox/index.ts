@@ -1,1 +1,2 @@
-export { CheckBox } from "./checkbox";
+
+export { CheckBox, CheckBoxSize } from "./checkbox";
