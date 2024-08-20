@@ -59,6 +59,21 @@ export const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(
           )}
         >
           <svg
+            className={styles.indeterminateCheck}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 12 12"
+            fill="none"
+          >
+            <path
+              d="M2.5 6H9.5"
+              stroke="currentColor"
+              strokeWidth="1.66666"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             className={styles.check}
             viewBox="0 0 12 12"
@@ -68,21 +83,6 @@ export const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(
               d="M10 3L4.5 8.5L2 6"
               stroke="currentColor"
               strokeWidth="1.6666"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-
-          <svg
-            className={styles.indeterminateCheck}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 12 12"
-            fill="none"
-          >
-            <path
-              d="M2.5 6H9.5"
-              stroke="#7F56D9"
-              strokeWidth="1.66666"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
