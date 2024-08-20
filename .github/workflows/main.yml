@@ -7,15 +7,21 @@ on:
 jobs:
   install:
     runs-on: ubuntu-latest
+    steps:
 
   e2e:
     runs-on: ubuntu-latest
+    steps:
 
   lint:
     runs-on: ubuntu-latest
+    steps:
+
 
   build:
     runs-on: ubuntu-latest
+    steps:
+
 
 
   
