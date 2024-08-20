@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import styles from "./checkbox.module.scss";
+
 import { useRef, useEffect, forwardRef, useImperativeHandle } from "react";
 
 export enum CheckBoxSize {
