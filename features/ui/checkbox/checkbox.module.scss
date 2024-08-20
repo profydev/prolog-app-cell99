@@ -1,0 +1,91 @@
+@use "@styles/color";
+@use "@styles/font";
+@use "@styles/space";
+@use "@styles/misc";
+@use "@styles/shadow";
+
+.check,
+.indeterminateCheck {
+  width: 0.75 rem;
+  height: 0.75 rem;
+}
+
+.sm {
+  font: font.$text-sm-medium;
+  gap: space.$s2;
+
+  .check,
+  .indeterminateCheck {
+    width: 0.75 rem;
+    height: 0.75 rem;
+  }
+}
+
+.md {
+  font: font.$text-md-medium;
+  gap: space.$s3;
+
+  .check,
+  .indeterminateCheck {
+    width: 0.875 rem;
+    height: 0.875 rem;
+  }
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: space.$s4;
+  height: space.$s4;
+  border-radius: space.$s1;
+  border: 1px solid color.$gray-300;
+  background: color.$white;
+  color: color.$primary-600;
+
+  & .check,
+  & .indeterminateCheck {
+    display: none;
+  }
+
+  &.indeterminate .indeterminateCheck {
+    display: block;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: color.$gray-700;
+
+  & input {
+    opacity: 0;
+    position: absolute;
+  }
+
+  &:focus-within .checkbox {
+    box-shadow: shadow.$focus-primary;
+  }
+
+  & input:checked ~ .checkbox:not(.indeterminate) .check {
+    display: block;
+  }
+
+  &:hover .checkbox,
+  & input:checked ~ .checkbox,
+  & .checkbox.indeterminate {
+    border-color: color.$primary-600;
+    background: color.$primary-50;
+  }
+
+  & input:disabled ~ .checkbox {
+    border-color: color.$gray-200;
+    background: color.$gray-200;
+  }
+
+  & input:disabled ~ * {
+    color: color.$gray-300;
+    cursor: not-allowed;
+  }
+}
