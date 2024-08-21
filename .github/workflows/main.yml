@@ -92,8 +92,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const url = process.env.DEPLOY_URL;
-            const message = `Deploy preview: ${url}`;
+            const url = Buffer.from(process.env.DEPLOY_URL);
+            const message = `Deploy preview: ${buffer.toString(url)}`;
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
