@@ -81,7 +81,7 @@ export const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(
           >
             <path
               d="M2.5 6H9.5"
-              stroke="#7F56D9"
+              stroke="currentColor"
               strokeWidth="1.66666"
               strokeLinecap="round"
               strokeLinejoin="round"
