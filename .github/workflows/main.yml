@@ -16,8 +16,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashfiles('**/package-lock.json')}}
+      - name: Install node   
+        uses: actions/setup-node@v3
         with:
           node-version: "18"
           cache: "npm"
@@ -32,6 +39,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashfiles('**/package-lock.json')}}
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Build Project Artifacts
@@ -57,6 +69,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashfiles('**/package-lock.json')}}
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
