@@ -23,7 +23,7 @@ jobs:
         with:
           path: ~/.npm
           key: deps-node-modules-${{ hashfiles('**/package-lock.json')}}
-      - name: Install node   
+      - name: Install node
         uses: actions/setup-node@v3
         with:
           node-version: "18"
