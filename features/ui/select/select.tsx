@@ -1,5 +1,6 @@
 import React, { useState, ReactNode, isValidElement } from "react";
 import Select, { MultiValue, SingleValue } from "react-select";
+//import styles from "./select.module.scss";
 
 export type SelectChildProps = {
   children: ReactNode;
@@ -8,20 +9,20 @@ export type SelectChildProps = {
 };
 
 interface CustomSelectProps {
-  children: ReactNode; // Include any additional props you may want to pass down to react-select
+  children: ReactNode;
   isMulti?: boolean;
   [key: string]: unknown;
 }
 
 interface OptionType {
-  label?: string;
-  value?: string;
-  hint?: string;
+  label: string;
+  value: string;
+  hint: string;
 }
 
 // Custom Select-child component
-export const SelectChild = ({ children, value, hint }: SelectChildProps) => {
-  return { label: children, value, hint };
+export const SelectChild: React.FC<SelectChildProps> = ({ children }) => {
+  return <>{children}</>; // Simply return the children
 };
 
 // Custom Select component
@@ -34,30 +35,31 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
   const [selectedOptions, setSelectedOptions] = useState<OptionType[]>([]);
 
   // Map through the children and convert them to react-select options
-  const options: OptionType[] | undefined = React.Children.map(
-    children,
-    (child) => {
-      // Check if the child is a valid React element
-      if (isValidElement(child)) {
+  const options: OptionType[] = React.Children.toArray(children)
+    .map((child) => {
+      // Check if the child is a valid React element and of type SelectChild
+      if (
+        isValidElement<SelectChildProps>(child) &&
+        child.type === SelectChild
+      ) {
         return {
-          label: child.props.children,
+          label: child.props.children as string, // You might want to enforce the label as string
           value: child.props.value,
           hint: child.props.hint,
         };
       }
-      // If the child is not a valid React element, return null (or handle differently if needed)
       return null;
-    },
-  )?.filter(Boolean) as OptionType[]; // Filter out any null values
+    })
+    .filter(Boolean) as OptionType[]; // Filter out any null values
 
-  // Handle selection change for multi-select
+  // Handle selection change
   const handleChange = (
     selected: MultiValue<OptionType> | SingleValue<OptionType>,
   ) => {
     if (isMulti && Array.isArray(selected)) {
       setSelectedOptions(selected);
     } else if (selected) {
-      setSelectedOptions([selected]);
+      setSelectedOptions([selected as OptionType]);
     } else {
       setSelectedOptions([]);
     }
@@ -71,7 +73,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         onChange={handleChange}
         {...props}
       />
-      {/* Conditionally render the hint boxes below the select */}
+      {/* Render the hint boxes */}
       {selectedOptions.length > 0 && (
         <div style={{ marginTop: "10px" }}>
           {selectedOptions.map((option) => (
